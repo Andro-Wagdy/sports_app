@@ -9,7 +9,6 @@ import 'package:sports_app/Data/Repository/get_teams_data_repo.dart';
 import 'package:sports_app/Functions/DrawerClass.dart';
 import 'package:sports_app/Screens/TeamsScreen.dart';
 
-
 class LeagueScreen extends StatefulWidget {
   const LeagueScreen({super.key});
 
@@ -36,7 +35,7 @@ class _LeagueScreenState extends State<LeagueScreen> {
                 onPressed: () {
                   Scaffold.of(context).openDrawer();
                 },
-                icon: Icon(Icons.menu),
+                icon: const Icon(Icons.menu),
               );
             },
           ),
@@ -75,9 +74,10 @@ class _LeagueScreenState extends State<LeagueScreen> {
                               Navigator.push(
                                   context,
                                   MaterialPageRoute(
-                                      builder: (context) => TeamsScreen()));
+                                      builder: (context) =>
+                                          const TeamsScreen()));
                             },
-                            child: Container(
+                            child: SizedBox(
                               // color: Colors.red,
                               height:
                                   MediaQuery.of(context).size.height * 1 / 3,
@@ -106,7 +106,7 @@ class _LeagueScreenState extends State<LeagueScreen> {
                                     child: Text(
                                       "${state.response?.result[index].leagueName}" ??
                                           "",
-                                      style: TextStyle(
+                                      style: const TextStyle(
                                           fontSize: 20, color: Colors.white),
                                     ),
                                   )

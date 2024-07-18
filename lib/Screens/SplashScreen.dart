@@ -6,6 +6,8 @@ import 'package:sports_app/Screens/LoginScreen.dart';
 import 'OnboardingScreen.dart';
 
 class SplashScreen extends StatefulWidget {
+  const SplashScreen({super.key});
+
   @override
   _SplashScreenState createState() => _SplashScreenState();
 }
@@ -20,21 +22,21 @@ class _SplashScreenState extends State<SplashScreen> {
       final prefs = await SharedPreferences.getInstance();
       bool? showHome = prefs.getBool('showHome') ?? false;
 
-      bool? google_logedin = prefs.getBool('google_logedin') ?? false;
+      bool? googleLogedin = prefs.getBool('google_logedin') ?? false;
 
-      bool? phone_logedin = prefs.getBool('phone_logedin') ?? false;
+      bool? phoneLogedin = prefs.getBool('phone_logedin') ?? false;
 
-      if (google_logedin == true || phone_logedin == true) {
+      if (googleLogedin == true || phoneLogedin == true) {
         logedin = true;
       }
 
-      print("/*/**/*//*/***//****/${logedin}");
+      print("/*/**/*//*/***//****/$logedin");
 
       // showHome = prefs.getBool('showHome');
       return showHome ?? false;
     }
 
-    Future.delayed(Duration(seconds: 5), () async {
+    Future.delayed(const Duration(seconds: 5), () async {
       bool? showHome = await getPrefs();
       Navigator.pushReplacement(
         context,
@@ -43,7 +45,7 @@ class _SplashScreenState extends State<SplashScreen> {
         //   ),
         // );
         MaterialPageRoute(
-            builder: (context) => showHome!
+            builder: (context) => showHome
                 ? (logedin ? HomeScreen() : LoginScreen())
                 : OnboardingScreen()),
       );
@@ -64,9 +66,9 @@ class _SplashScreenState extends State<SplashScreen> {
           ),
 
           Center(
-            child: Container(
+            child: SizedBox(
               width: MediaQuery.of(context).size.width * 0.66,
-              child: Image.asset("assets/images/logo.png"),
+              child: Image.asset("assets/Images/logo.png"),
             ),
           ),
           Align(
@@ -74,10 +76,10 @@ class _SplashScreenState extends State<SplashScreen> {
             child: Column(
               mainAxisSize: MainAxisSize.min,
               children: [
-                CircularProgressIndicator(
+                const CircularProgressIndicator(
                   valueColor: AlwaysStoppedAnimation<Color>(Colors.red),
                 ),
-                SizedBox(height: 10),
+                const SizedBox(height: 10),
                 Padding(
                   padding: const EdgeInsets.all(8.0),
                   child: Text(

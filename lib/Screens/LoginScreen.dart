@@ -12,7 +12,6 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'package:sports_app/Cubits/Circular_Indicator_Cubit/circular_indicator_cubit.dart';
 import 'package:sports_app/Screens/HomeScreen.dart';
 
-
 class LoginScreen extends StatelessWidget {
   LoginScreen({super.key});
 
@@ -21,9 +20,9 @@ class LoginScreen extends StatelessWidget {
 
   final GlobalKey<FormState> _formkey = GlobalKey<FormState>();
 
-  RegExp phone_number_regex = new RegExp(r'^01[0-9]{9}$');
+  RegExp phone_number_regex = RegExp(r'^01[0-9]{9}$');
 
-  RegExp otp_code_regex = new RegExp(r"^[0-9]{4}$");
+  RegExp otp_code_regex = RegExp(r"^[0-9]{4}$");
 
   var otp_code;
 
@@ -51,14 +50,14 @@ class LoginScreen extends StatelessWidget {
       child: SingleChildScrollView(
         child: Form(
           key: _formkey,
-          child: Container(
+          child: SizedBox(
             width: MediaQuery.of(context).size.width,
             height: MediaQuery.of(context).size.height,
             // height: double.infinity,
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                Text(
+                const Text(
                   "Login",
                   style: TextStyle(color: Color(0xfff0a307), fontSize: 45),
                 ),
@@ -66,7 +65,7 @@ class LoginScreen extends StatelessWidget {
                   height: MediaQuery.of(context).size.height * 1 / 20,
                 ),
                 Container(
-                  margin: EdgeInsets.all(20),
+                  margin: const EdgeInsets.all(20),
                   width: MediaQuery.of(context).size.width * 0.8,
                   child: TextFormField(
                     validator: (value) {
@@ -83,8 +82,8 @@ class LoginScreen extends StatelessWidget {
                     textAlign: TextAlign.left,
                     decoration: InputDecoration(
                         errorStyle: TextStyle(color: Colors.red[400]),
-                        contentPadding: EdgeInsets.all(15),
-                        prefixIcon: Icon(Icons.phone,
+                        contentPadding: const EdgeInsets.all(15),
+                        prefixIcon: const Icon(Icons.phone,
                             color: Color.fromARGB(255, 145, 142, 142),
                             size: 30),
                         filled: true,
@@ -93,13 +92,13 @@ class LoginScreen extends StatelessWidget {
                           borderRadius: BorderRadius.circular(100),
                         ),
                         hintText: 'Phone number',
-                        hintStyle: TextStyle(
+                        hintStyle: const TextStyle(
                           fontSize: 20,
                         )),
                   ),
                 ),
                 Container(
-                  margin: EdgeInsets.only(left: 20, right: 20),
+                  margin: const EdgeInsets.only(left: 20, right: 20),
 
                   width: MediaQuery.of(context).size.width * 0.8,
                   // height: MediaQuery.of(context).size.height * 0.65,
@@ -114,13 +113,14 @@ class LoginScreen extends StatelessWidget {
                         if (otp_code != random_otp.toString()) {
                           return 'Wrong Code';
                         }
+                        return null;
                       },
                       textAlign: TextAlign.left,
                       decoration: InputDecoration(
                         errorStyle: TextStyle(color: Colors.red[400]),
-                        contentPadding: EdgeInsets.all(15),
-                        prefixIcon: Icon(Icons.verified_user,
-                            color: const Color.fromARGB(255, 145, 142, 142),
+                        contentPadding: const EdgeInsets.all(15),
+                        prefixIcon: const Icon(Icons.verified_user,
+                            color: Color.fromARGB(255, 145, 142, 142),
                             size: 30),
                         filled: true,
                         fillColor: Colors.white,
@@ -128,7 +128,7 @@ class LoginScreen extends StatelessWidget {
                           borderRadius: BorderRadius.circular(100),
                         ),
                         hintText: 'verification Code',
-                        hintStyle: TextStyle(
+                        hintStyle: const TextStyle(
                           fontSize: 20,
                         ),
                       )),
@@ -137,8 +137,36 @@ class LoginScreen extends StatelessWidget {
                 BlocBuilder<CircularIndicatorCubit, CircularIndicatorState>(
                   builder: (context, state) {
                     return ElevatedButton(
+                      onPressed: () async {
+                        if (_formkey.currentState!.validate() &&
+                            otp_code == random_otp.toString()) {
+                          context.read<CircularIndicatorCubit>().Circular();
+                          await Future.delayed(const Duration(seconds: 3));
+                          Navigator.pushReplacement(
+                            context,
+                            MaterialPageRoute<void>(
+                              builder: (BuildContext context) => HomeScreen(),
+                            ),
+                          );
+                          final prefs = await SharedPreferences.getInstance();
+                          prefs.setBool('phone_logedin', true);
+                          prefs.setBool('google_logedin', false);
+                          prefs.setString('phone_number', phone_number);
+                          // print(phone_number);
+                        }
+                      },
+                      style: ElevatedButton.styleFrom(
+                          shadowColor: Colors.black,
+                          elevation: 10,
+                          backgroundColor: Colors.green[500],
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(100),
+                          ),
+                          textStyle: const TextStyle(
+                            fontSize: 18,
+                          )),
                       child: context.read<CircularIndicatorCubit>().isLoading
-                          ? Container(
+                          ? const SizedBox(
                               width: 200,
                               child: Row(
                                 mainAxisAlignment: MainAxisAlignment.start,
@@ -160,49 +188,21 @@ class LoginScreen extends StatelessWidget {
                                 ],
                               ),
                             )
-                          : Text(
+                          : const Text(
                               'verifying',
                               style: TextStyle(color: Colors.black),
                             ),
-                      onPressed: () async {
-                        if (_formkey.currentState!.validate() &&
-                            otp_code == random_otp.toString()) {
-                          context.read<CircularIndicatorCubit>().Circular();
-                          await Future.delayed(Duration(seconds: 3));
-                          Navigator.pushReplacement(
-                            context,
-                            MaterialPageRoute<void>(
-                              builder: (BuildContext context) => HomeScreen(),
-                            ),
-                          );
-                          final prefs = await SharedPreferences.getInstance();
-                          prefs.setBool('phone_logedin', true);
-                          prefs.setBool('google_logedin', false);
-                          prefs.setString('phone_number', phone_number);
-                          // print(phone_number);
-                        }
-                      },
-                      style: ElevatedButton.styleFrom(
-                          shadowColor: Colors.black,
-                          elevation: 10,
-                          backgroundColor: Colors.green[500],
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(100),
-                          ),
-                          textStyle: TextStyle(
-                            fontSize: 18,
-                          )),
                     );
                   },
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 10,
                 ),
                 ElevatedButton(
                   onPressed: () {
                     var random = Random();
-                    var temp_otp = random.nextInt(8) + 1;
-                    random_otp = random.nextInt(1000) + (1000 * temp_otp);
+                    var tempOtp = random.nextInt(8) + 1;
+                    random_otp = random.nextInt(1000) + (1000 * tempOtp);
                     // print(random_otp);
                     showDialog(
                       context: context,
@@ -212,16 +212,16 @@ class LoginScreen extends StatelessWidget {
                             'verification Code',
                             style: TextStyle(fontWeight: FontWeight.bold),
                           ),
-                          content: Container(
+                          content: SizedBox(
                             height: 100,
                             child: Column(
                               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                               children: [
-                                Text(
+                                const Text(
                                     'You should copy this number and write it in the verification code place'),
                                 Text(
                                   random_otp.toString(),
-                                  style: TextStyle(
+                                  style: const TextStyle(
                                       fontSize: 35,
                                       fontWeight: FontWeight.bold),
                                 ),
@@ -247,15 +247,15 @@ class LoginScreen extends StatelessWidget {
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(100),
                       ),
-                      textStyle: TextStyle(
+                      textStyle: const TextStyle(
                         fontSize: 18,
                       )),
-                  child: Text(
+                  child: const Text(
                     'Generate Verification Code',
                     style: TextStyle(color: Colors.white),
                   ),
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 30,
                 ),
                 FloatingActionButton.extended(
@@ -273,7 +273,7 @@ class LoginScreen extends StatelessWidget {
                     height: 70,
                     width: 70,
                   ),
-                  label: Text('Sign in with Google'),
+                  label: const Text('Sign in with Google'),
                   backgroundColor: Colors.white,
                 ),
               ],
@@ -300,13 +300,13 @@ class LoginScreen extends StatelessWidget {
     prefs.setBool('google_logedin', true);
     prefs.setBool('phone_logedin', false);
     // print(user?.displayName);
-    String? google_name = user!.displayName;
-    String? google_photo = user.photoURL;
-    String? google_email = user.email;
-    String? google_number = user.phoneNumber;
-    prefs.setString('google_name', google_name.toString());
-    prefs.setString('google_photo', google_photo.toString());
-    prefs.setString('google_email', google_email.toString());
-    prefs.setString('google_number', google_number.toString());
+    String? googleName = user!.displayName;
+    String? googlePhoto = user.photoURL;
+    String? googleEmail = user.email;
+    String? googleNumber = user.phoneNumber;
+    prefs.setString('google_name', googleName.toString());
+    prefs.setString('google_photo', googlePhoto.toString());
+    prefs.setString('google_email', googleEmail.toString());
+    prefs.setString('google_number', googleNumber.toString());
   }
 }

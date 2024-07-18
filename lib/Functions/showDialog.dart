@@ -5,11 +5,11 @@ Future<void> showMyDialog(BuildContext context) async {
     context: context,
     builder: (BuildContext context) {
       return AlertDialog(
-        title: Text('Not Available yet'),
-        content: Text('Coming Soon'),
+        title: const Text('Not Available yet'),
+        content: const Text('Coming Soon'),
         actions: <Widget>[
           TextButton(
-            child: Text('OK'),
+            child: const Text('OK'),
             onPressed: () {
               Navigator.of(context).pop(); // Close the dialog
             },

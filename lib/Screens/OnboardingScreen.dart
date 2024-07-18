@@ -4,12 +4,10 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:sports_app/Cubits/SliderCubit/slider_cubit.dart';
 import 'package:sports_app/Screens/LoginScreen.dart';
-import 'HomeScreen.dart';
-import 'test.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
 class OnboardingScreen extends StatefulWidget {
-  OnboardingScreen({super.key});
+  const OnboardingScreen({super.key});
 
   @override
   State<OnboardingScreen> createState() => _OnboardingScreenState();
@@ -54,14 +52,14 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                       width: MediaQuery.of(context).size.width,
                       color: Colors.grey[850],
                       child: Container(
-                        padding: EdgeInsets.only(left: 20, right: 20),
+                        padding: const EdgeInsets.only(left: 20, right: 20),
                         child: Column(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
                             Container(
                               child: Text(
                                 title[i].toString(),
-                                style: TextStyle(
+                                style: const TextStyle(
                                     fontSize: 40,
                                     fontWeight: FontWeight.bold,
                                     color: Colors.white),
@@ -73,14 +71,15 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                             ),
                             Text(
                               subtitle[i].toString(),
-                              style:
-                                  TextStyle(fontSize: 25, color: Colors.white),
+                              style: const TextStyle(
+                                  fontSize: 25, color: Colors.white),
                             ),
                             Padding(
-                              padding: EdgeInsets.only(top: 10, bottom: 10),
+                              padding:
+                                  const EdgeInsets.only(top: 10, bottom: 10),
                               child: Text(
                                 Illustration[i].toString(),
-                                style: TextStyle(
+                                style: const TextStyle(
                                     fontSize: 25, color: Colors.white),
                               ),
                             ),
@@ -98,8 +97,8 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                   enableInfiniteScroll: true,
                   reverse: false,
                   autoPlay: true,
-                  autoPlayInterval: Duration(seconds: 3),
-                  autoPlayAnimationDuration: Duration(milliseconds: 800),
+                  autoPlayInterval: const Duration(seconds: 3),
+                  autoPlayAnimationDuration: const Duration(milliseconds: 800),
                   autoPlayCurve: Curves.fastOutSlowIn,
                   enlargeCenterPage: true,
                   enlargeFactor: 0.3,
@@ -117,7 +116,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               Container(
-                margin: EdgeInsets.only(bottom: 20),
+                margin: const EdgeInsets.only(bottom: 20),
                 child: ElevatedButton(
                   onPressed: () async {
                     final prefs = await SharedPreferences.getInstance();
@@ -129,7 +128,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                       ),
                     );
                   },
-                  child: Text('Skip'),
+                  child: const Text('Skip'),
                 ),
               ),
               BlocBuilder<SliderCubit, SliderState>(
@@ -145,7 +144,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                   );
                 },
               ),
-              SizedBox(
+              const SizedBox(
                 height: 40,
               )
             ],

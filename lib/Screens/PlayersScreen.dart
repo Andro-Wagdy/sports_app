@@ -7,9 +7,8 @@ import 'package:sports_app/Data/Repository/get_players_repo.dart';
 import 'package:sports_app/Data/Repository/get_teams_data_repo.dart';
 import 'package:sports_app/Functions/DrawerClass.dart';
 
-
 class PlayersScreen extends StatelessWidget {
-  PlayersScreen({super.key});
+  const PlayersScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -22,14 +21,14 @@ class PlayersScreen extends StatelessWidget {
             onPressed: () {
               Scaffold.of(context).openDrawer();
             },
-            icon: Icon(Icons.menu),
+            icon: const Icon(Icons.menu),
           );
         }),
         automaticallyImplyLeading: false,
         toolbarHeight: MediaQuery.of(context).size.height * (1 / 15),
         backgroundColor: const Color(0xfff0a307),
         centerTitle: true,
-        title: Text('${team_name} Players'),
+        title: Text('$team_name Players'),
       ),
       body: Container(
         color: Colors.grey[850],
@@ -38,7 +37,7 @@ class PlayersScreen extends StatelessWidget {
         child: Column(
           children: [
             Container(
-              padding: EdgeInsets.only(top: 10),
+              padding: const EdgeInsets.only(top: 10),
               width: MediaQuery.of(context).size.width * 8 / 10,
               height: MediaQuery.of(context).size.width * 1.3 / 10,
               child: TextField(
@@ -49,9 +48,8 @@ class PlayersScreen extends StatelessWidget {
                 },
                 textAlign: TextAlign.left,
                 decoration: InputDecoration(
-                    suffixIcon: Icon(Icons.search,
-                        color: const Color.fromARGB(255, 145, 142, 142),
-                        size: 25),
+                    suffixIcon: const Icon(Icons.search,
+                        color: Color.fromARGB(255, 145, 142, 142), size: 25),
                     border: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(100),
                     ),
@@ -68,11 +66,11 @@ class PlayersScreen extends StatelessWidget {
             BlocBuilder<GetPlayersCubit, GetPlayersState>(
                 builder: (context, state) {
               if (state is GetPlayersInitial) {
-                return Center(
+                return const Center(
                   child: Text('Please press the button to get news'),
                 );
               } else if (state is GetPlayersLoading) {
-                return Center(
+                return const Center(
                   child: CircularProgressIndicator(),
                 );
               } else if (state is GetPlayersSuccess) {
@@ -106,7 +104,7 @@ class PlayersScreen extends StatelessWidget {
                                                 return Column(
                                                   children: [
                                                     Text(
-                                                      "Name : ${state.playersresponse!.result[index].playerName ?? ""}",
+                                                      "Name : ${state.playersresponse.result[index].playerName ?? ""}",
                                                       style: GoogleFonts.lato(
                                                           fontSize: 15),
                                                     ),
@@ -114,7 +112,7 @@ class PlayersScreen extends StatelessWidget {
                                                       height: 5,
                                                     ),
                                                     Text(
-                                                      "Number : ${state.playersresponse!.result[index].playerNumber ?? ""}",
+                                                      "Number : ${state.playersresponse.result[index].playerNumber ?? ""}",
                                                       style: GoogleFonts.lato(
                                                           fontSize: 15),
                                                     ),
@@ -122,7 +120,7 @@ class PlayersScreen extends StatelessWidget {
                                                       height: 5,
                                                     ),
                                                     Text(
-                                                      "Country : ${state.playersresponse!.result[index].playerCountry ?? ""}",
+                                                      "Country : ${state.playersresponse.result[index].playerCountry ?? ""}",
                                                       style: GoogleFonts.lato(
                                                           fontSize: 15),
                                                     ),
@@ -140,7 +138,7 @@ class PlayersScreen extends StatelessWidget {
                                                       decoration: BoxDecoration(
                                                           image: DecorationImage(
                                                               image: NetworkImage(state
-                                                                      .playersresponse!
+                                                                      .playersresponse
                                                                       .result[
                                                                           index]
                                                                       .playerImage ??
@@ -152,7 +150,7 @@ class PlayersScreen extends StatelessWidget {
                                                       height: 5,
                                                     ),
                                                     Text(
-                                                      "Matches Played : ${state.playersresponse!.result[index].playerMatchPlayed ?? ""}",
+                                                      "Matches Played : ${state.playersresponse.result[index].playerMatchPlayed ?? ""}",
                                                       style: GoogleFonts.lato(
                                                           fontSize: 15),
                                                     ),
@@ -168,7 +166,7 @@ class PlayersScreen extends StatelessWidget {
                                                       height: 5,
                                                     ),
                                                     Text(
-                                                      "Yellow Cards Num : ${state.playersresponse!.result[index].playerYellowCards ?? ""}",
+                                                      "Yellow Cards Num : ${state.playersresponse.result[index].playerYellowCards ?? ""}",
                                                       style: GoogleFonts.lato(
                                                           fontSize: 15),
                                                     ),
@@ -176,7 +174,7 @@ class PlayersScreen extends StatelessWidget {
                                                       height: 5,
                                                     ),
                                                     Text(
-                                                      "Red Cards Num : ${state.playersresponse!.result[index].playerRedCards ?? ""}",
+                                                      "Red Cards Num : ${state.playersresponse.result[index].playerRedCards ?? ""}",
                                                       style: GoogleFonts.lato(
                                                           fontSize: 15),
                                                     ),
@@ -184,7 +182,7 @@ class PlayersScreen extends StatelessWidget {
                                                       height: 5,
                                                     ),
                                                     Text(
-                                                      "Goals : ${state.playersresponse!.result[index].playerGoals ?? ""}",
+                                                      "Goals : ${state.playersresponse.result[index].playerGoals ?? ""}",
                                                       style: GoogleFonts.lato(
                                                           fontSize: 15),
                                                     ),
@@ -192,7 +190,7 @@ class PlayersScreen extends StatelessWidget {
                                                       height: 5,
                                                     ),
                                                     Text(
-                                                      "Assists : ${state.playersresponse!.result[index].playerAssists ?? ""}",
+                                                      "Assists : ${state.playersresponse.result[index].playerAssists ?? ""}",
                                                       style: GoogleFonts.lato(
                                                           fontSize: 15),
                                                     ),
@@ -206,9 +204,9 @@ class PlayersScreen extends StatelessWidget {
                                                         //             const Color(0xfff0a307)),
                                                         onPressed: () {
                                                           Share.share(
-                                                              "Name : ${state.playersresponse!.result[index].playerName ?? ""}\nNumber : ${state.playersresponse!.result[index].playerNumber ?? ""}");
+                                                              "Name : ${state.playersresponse.result[index].playerName ?? ""}\nNumber : ${state.playersresponse.result[index].playerNumber ?? ""}");
                                                         },
-                                                        child: Text(
+                                                        child: const Text(
                                                             "Share Player"))
                                                   ],
                                                 );
@@ -222,7 +220,7 @@ class PlayersScreen extends StatelessWidget {
                                         ),
                                         actions: <Widget>[
                                           TextButton(
-                                            child: Text('OK'),
+                                            child: const Text('OK'),
                                             onPressed: () {
                                               Navigator.of(context)
                                                   .pop(); // Close the dialog
@@ -242,7 +240,7 @@ class PlayersScreen extends StatelessWidget {
                                     width: 2,
                                   ),
                                 ),
-                                margin: EdgeInsets.all(5),
+                                margin: const EdgeInsets.all(5),
                                 child: Row(
                                   children: [
                                     Image.network(
@@ -255,7 +253,7 @@ class PlayersScreen extends StatelessWidget {
                                             "https://upload.wikimedia.org/wikipedia/ar/f/f7/Fifa-logo.png?20140204004927");
                                       },
                                     ),
-                                    SizedBox(
+                                    const SizedBox(
                                       width: 10,
                                     ),
                                     Text(
@@ -263,9 +261,9 @@ class PlayersScreen extends StatelessWidget {
                                               .playerName
                                               .toString() ??
                                           "",
-                                      style: TextStyle(fontSize: 20),
+                                      style: const TextStyle(fontSize: 20),
                                     ),
-                                    SizedBox(
+                                    const SizedBox(
                                       width: 10,
                                     ),
                                   ],
@@ -280,7 +278,7 @@ class PlayersScreen extends StatelessWidget {
                   ),
                 );
               } else {
-                return Center(
+                return const Center(
                   child: Text('Invalid Search'),
                 );
               }

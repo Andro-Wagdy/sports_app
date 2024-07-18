@@ -12,6 +12,8 @@ import 'package:sports_app/Functions/DrawerClass.dart';
 import 'package:sports_app/Screens/LeagueScreen.dart';
 
 class FootballCountriesView extends StatefulWidget {
+  const FootballCountriesView({super.key});
+
   @override
   State<FootballCountriesView> createState() => _FootballCountriesViewState();
 }
@@ -81,11 +83,11 @@ class _FootballCountriesViewState extends State<FootballCountriesView> {
             onPressed: () {
               Scaffold.of(context).openDrawer();
             },
-            icon: Icon(Icons.menu),
+            icon: const Icon(Icons.menu),
           );
         }),
         automaticallyImplyLeading: false,
-        title: Text("Countries"),
+        title: const Text("Countries"),
         centerTitle: true,
       ),
       body: Container(
@@ -99,15 +101,16 @@ class _FootballCountriesViewState extends State<FootballCountriesView> {
                       decoration: BoxDecoration(
                         color: Colors.transparent,
                         border: Border.all(color: Colors.white, width: 2),
-                        borderRadius: BorderRadius.all(Radius.circular(100)),
+                        borderRadius:
+                            const BorderRadius.all(Radius.circular(100)),
                       ),
                       alignment: Alignment.center,
-                      margin: EdgeInsets.all(10),
+                      margin: const EdgeInsets.all(10),
                       width: MediaQuery.of(context).size.width,
                       height: MediaQuery.of(context).size.height * 1 / 20,
                       child: Text(
                         _currentAdress ?? "please Click on the pin",
-                        style: TextStyle(color: Colors.white),
+                        style: const TextStyle(color: Colors.white),
                       )),
                 ),
                 IconButton(
@@ -133,7 +136,7 @@ class _FootballCountriesViewState extends State<FootballCountriesView> {
 
                     print(_country_index);
                   },
-                  icon: Icon(Icons.location_on),
+                  icon: const Icon(Icons.location_on),
                   color: Colors.white,
                 )
               ],
@@ -163,7 +166,7 @@ class _FootballCountriesViewState extends State<FootballCountriesView> {
                             child: GestureDetector(
                               onTap: () {
                                 country_Id =
-                                    state.response!.result[index].countryKey;
+                                    state.response.result[index].countryKey;
                                 print(country_Id);
                                 context
                                     .read<FootballCountriesCubit>()
@@ -171,7 +174,7 @@ class _FootballCountriesViewState extends State<FootballCountriesView> {
                                 Navigator.push(
                                   context,
                                   MaterialPageRoute(
-                                    builder: (context) => LeagueScreen(),
+                                    builder: (context) => const LeagueScreen(),
                                   ),
                                 );
                               },
@@ -217,7 +220,7 @@ class _FootballCountriesViewState extends State<FootballCountriesView> {
                                         state.response.result[index]
                                                 .countryName ??
                                             "countryName",
-                                        style: TextStyle(
+                                        style: const TextStyle(
                                           fontSize: 14,
                                           color: Colors.white,
                                           fontWeight: FontWeight.bold,
@@ -246,11 +249,11 @@ class _FootballCountriesViewState extends State<FootballCountriesView> {
                         builder: (context, snapshot) {
                           if (snapshot.connectionState ==
                               ConnectionState.waiting) {
-                            return Center(
+                            return const Center(
                               child: CircularProgressIndicator(),
                             );
                           } else {
-                            return Center(
+                            return const Center(
                               child:
                                   Text("An error occurred while loading data."),
                             );

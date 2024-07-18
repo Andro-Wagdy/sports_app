@@ -9,6 +9,7 @@ import 'package:sports_app/Cubits/PlayersCubit/players_cubit.dart';
 import 'package:sports_app/Cubits/SliderCubit/slider_cubit.dart';
 import 'package:sports_app/Cubits/TeamsCubit/get_goals_cubit.dart';
 import 'package:sports_app/Cubits/TeamsCubit/get_teams_cubit.dart';
+import 'package:sports_app/Screens/LoginScreen.dart';
 import 'package:sports_app/Screens/SplashScreen.dart';
 
 void main() {

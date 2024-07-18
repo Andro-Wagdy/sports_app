@@ -7,10 +7,8 @@ import 'package:sports_app/Functions/DrawerClass.dart';
 import 'package:sports_app/Screens/CountriesScreen.dart';
 // import 'package:sport_app_semicolon/Classes/DrawerClass.dart';
 
-
-
 class HomeScreen extends StatelessWidget {
-  HomeScreen({super.key});
+  const HomeScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -31,7 +29,7 @@ class HomeScreen extends StatelessWidget {
               onPressed: () {
                 Scaffold.of(context).openDrawer();
               },
-              icon: Icon(Icons.menu),
+              icon: const Icon(Icons.menu),
             );
           }),
         ),
@@ -40,7 +38,7 @@ class HomeScreen extends StatelessWidget {
           height: double.infinity,
           width: double.infinity,
           child: GridView.count(
-            physics: NeverScrollableScrollPhysics(),
+            physics: const NeverScrollableScrollPhysics(),
             childAspectRatio: ((MediaQuery.of(context).size.width) /
                 (MediaQuery.of(context).size.height -
                     20 -
@@ -49,7 +47,7 @@ class HomeScreen extends StatelessWidget {
             children: [
               Padding(
                 padding: const EdgeInsets.all(10.0),
-                child: Container(
+                child: SizedBox(
                   width: double.infinity,
                   height: MediaQuery.of(context).size.height,
                   child: Column(
@@ -92,7 +90,7 @@ class HomeScreen extends StatelessWidget {
               ),
               Padding(
                 padding: const EdgeInsets.all(10.0),
-                child: Container(
+                child: SizedBox(
                   width: double.infinity,
                   height: MediaQuery.of(context).size.height,
                   child: Column(
@@ -104,11 +102,11 @@ class HomeScreen extends StatelessWidget {
                                 context: context,
                                 builder: (BuildContext context) {
                                   return AlertDialog(
-                                    title: Text('Not Available yet'),
-                                    content: Text('Coming Soon'),
+                                    title: const Text('Not Available yet'),
+                                    content: const Text('Coming Soon'),
                                     actions: <Widget>[
                                       TextButton(
-                                        child: Text('OK'),
+                                        child: const Text('OK'),
                                         onPressed: () {
                                           Navigator.of(context)
                                               .pop(); // Close the dialog
@@ -144,7 +142,7 @@ class HomeScreen extends StatelessWidget {
               ),
               Padding(
                 padding: const EdgeInsets.all(10.0),
-                child: Container(
+                child: SizedBox(
                   width: double.infinity,
                   height: MediaQuery.of(context).size.height,
                   child: Column(
@@ -156,11 +154,11 @@ class HomeScreen extends StatelessWidget {
                                 context: context,
                                 builder: (BuildContext context) {
                                   return AlertDialog(
-                                    title: Text('Not Available yet'),
-                                    content: Text('Coming Soon'),
+                                    title: const Text('Not Available yet'),
+                                    content: const Text('Coming Soon'),
                                     actions: <Widget>[
                                       TextButton(
-                                        child: Text('OK'),
+                                        child: const Text('OK'),
                                         onPressed: () {
                                           Navigator.of(context)
                                               .pop(); // Close the dialog
@@ -187,7 +185,7 @@ class HomeScreen extends StatelessWidget {
               ),
               Padding(
                 padding: const EdgeInsets.all(10.0),
-                child: Container(
+                child: SizedBox(
                   width: double.infinity,
                   height: MediaQuery.of(context).size.height,
                   child: Expanded(
@@ -200,11 +198,11 @@ class HomeScreen extends StatelessWidget {
                                   context: context,
                                   builder: (BuildContext context) {
                                     return AlertDialog(
-                                      title: Text('Not Available yet'),
-                                      content: Text('Coming Soon'),
+                                      title: const Text('Not Available yet'),
+                                      content: const Text('Coming Soon'),
                                       actions: <Widget>[
                                         TextButton(
-                                          child: Text('OK'),
+                                          child: const Text('OK'),
                                           onPressed: () {
                                             Navigator.of(context)
                                                 .pop(); // Close the dialog

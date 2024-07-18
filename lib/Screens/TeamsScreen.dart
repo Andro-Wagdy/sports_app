@@ -8,9 +8,8 @@ import 'package:sports_app/Data/Repository/get_teams_data_repo.dart';
 import 'package:sports_app/Functions/DrawerClass.dart';
 import 'package:sports_app/Screens/PlayersScreen.dart';
 
-
 class TeamsScreen extends StatelessWidget {
-  TeamsScreen({super.key});
+  const TeamsScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -52,7 +51,7 @@ class TeamsScreen extends StatelessWidget {
                   child: Column(
                     children: [
                       Container(
-                        padding: EdgeInsets.only(top: 10),
+                        padding: const EdgeInsets.only(top: 10),
                         width: MediaQuery.of(context).size.width * 8 / 10,
                         height: MediaQuery.of(context).size.width * 1.3 / 10,
                         child: TextField(
@@ -64,9 +63,8 @@ class TeamsScreen extends StatelessWidget {
                           },
                           textAlign: TextAlign.left,
                           decoration: InputDecoration(
-                              suffixIcon: Icon(Icons.search,
-                                  color:
-                                      const Color.fromARGB(255, 145, 142, 142),
+                              suffixIcon: const Icon(Icons.search,
+                                  color: Color.fromARGB(255, 145, 142, 142),
                                   size: 25),
                               border: OutlineInputBorder(
                                 borderRadius: BorderRadius.circular(100),
@@ -84,11 +82,11 @@ class TeamsScreen extends StatelessWidget {
                       BlocBuilder<GetTeamsCubit, GetTeamsState>(
                           builder: (context, state) {
                         if (state is GetTeamsInitial) {
-                          return Center(
+                          return const Center(
                             child: Text('Please press the button to get news'),
                           );
                         } else if (state is GetTeamsLoading) {
-                          return Center(
+                          return const Center(
                             child: CircularProgressIndicator(),
                           );
                         } else if (state is GetTeamsSuccess) {
@@ -122,12 +120,13 @@ class TeamsScreen extends StatelessWidget {
                                       Navigator.push(
                                         context,
                                         MaterialPageRoute(
-                                          builder: (context) => PlayersScreen(),
+                                          builder: (context) =>
+                                              const PlayersScreen(),
                                         ),
                                       );
                                     },
                                     child: Container(
-                                      padding: EdgeInsets.all(10),
+                                      padding: const EdgeInsets.all(10),
                                       decoration: BoxDecoration(
                                         color: Colors.white,
                                         border: Border.all(
@@ -135,7 +134,7 @@ class TeamsScreen extends StatelessWidget {
                                           width: 2,
                                         ),
                                       ),
-                                      margin: EdgeInsets.all(5),
+                                      margin: const EdgeInsets.all(5),
                                       child: Column(
                                         mainAxisAlignment:
                                             MainAxisAlignment.spaceEvenly,
@@ -157,7 +156,7 @@ class TeamsScreen extends StatelessWidget {
                                             state.teamsresponse.result[index]
                                                     .teamName ??
                                                 "",
-                                            style: TextStyle(
+                                            style: const TextStyle(
                                                 fontSize: 20,
                                                 fontWeight: FontWeight.bold),
                                           ),
@@ -170,7 +169,7 @@ class TeamsScreen extends StatelessWidget {
                             ],
                           ));
                         } else {
-                          return Center(
+                          return const Center(
                             child: Padding(
                               padding: EdgeInsets.only(top: 10),
                               child: Text(
@@ -194,11 +193,11 @@ class TeamsScreen extends StatelessWidget {
                       BlocBuilder<GetGoalsCubit, GetGoalsState>(
                           builder: (context, state) {
                         if (state is GetGoalsInitial) {
-                          return Center(
+                          return const Center(
                             child: Text('Please press the button to get news'),
                           );
                         } else if (state is GetGoalsLoading) {
-                          return Center(
+                          return const Center(
                             child: CircularProgressIndicator(),
                           );
                         } else if (state is GetGoalsSuccess) {
@@ -212,7 +211,7 @@ class TeamsScreen extends StatelessWidget {
                                       itemBuilder: (context, index) {
                                         return Container(
                                           height: 80,
-                                          padding: EdgeInsets.all(10),
+                                          padding: const EdgeInsets.all(10),
                                           decoration: BoxDecoration(
                                             color: Colors.white,
                                             border: Border.all(
@@ -220,16 +219,17 @@ class TeamsScreen extends StatelessWidget {
                                               width: 2,
                                             ),
                                           ),
-                                          margin: EdgeInsets.all(5),
+                                          margin: const EdgeInsets.all(5),
                                           child: Row(
                                             mainAxisAlignment:
                                                 MainAxisAlignment.spaceEvenly,
                                             children: [
                                               Text(
                                                 (index + 1).toString(),
-                                                style: TextStyle(fontSize: 20),
+                                                style: const TextStyle(
+                                                    fontSize: 20),
                                               ),
-                                              SizedBox(
+                                              const SizedBox(
                                                 width: 10,
                                               ),
                                               Column(
@@ -239,39 +239,36 @@ class TeamsScreen extends StatelessWidget {
                                                         .goalsresponse
                                                         .result[index]
                                                         .playerName,
-                                                    style:
-                                                        TextStyle(fontSize: 20),
+                                                    style: const TextStyle(
+                                                        fontSize: 20),
                                                   ),
                                                   Text(
-                                                    "penalty goals " +
-                                                        state
-                                                            .goalsresponse
-                                                            .result[index]
-                                                            .penaltyGoals
-                                                            .toString(),
-                                                    style: TextStyle(
+                                                    "penalty goals ${state.goalsresponse.result[index].penaltyGoals}",
+                                                    style: const TextStyle(
                                                         fontSize: 13,
                                                         color: Color.fromRGBO(
                                                             0, 0, 0, 0.5)),
                                                   ),
                                                 ],
                                               ),
-                                              SizedBox(
+                                              const SizedBox(
                                                 width: 20,
                                               ),
                                               Text(
                                                 state.goalsresponse
                                                     .result[index].teamName,
-                                                style: TextStyle(fontSize: 15),
+                                                style: const TextStyle(
+                                                    fontSize: 15),
                                               ),
-                                              SizedBox(
+                                              const SizedBox(
                                                 width: 20,
                                               ),
                                               Text(
                                                 state.goalsresponse
                                                     .result[index].goals
                                                     .toString(),
-                                                style: TextStyle(fontSize: 20),
+                                                style: const TextStyle(
+                                                    fontSize: 20),
                                               ),
                                             ],
                                           ),
@@ -280,7 +277,7 @@ class TeamsScreen extends StatelessWidget {
                             ],
                           ));
                         } else {
-                          return Center(
+                          return const Center(
                             child: Text('Something went wrong'),
                           );
                         }
@@ -297,13 +294,13 @@ class TeamsScreen extends StatelessWidget {
             // left: 10,
             child: Builder(builder: (context) {
               return Container(
-                margin: EdgeInsets.only(top: 40),
+                margin: const EdgeInsets.only(top: 40),
                 child: IconButton(
                   color: Colors.black,
                   onPressed: () {
                     Scaffold.of(context).openDrawer();
                   },
-                  icon: Icon(Icons.menu),
+                  icon: const Icon(Icons.menu),
                 ),
               );
             }),

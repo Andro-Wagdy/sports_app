@@ -144,9 +144,8 @@ import 'package:google_sign_in/google_sign_in.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:sports_app/Screens/LoginScreen.dart';
 
-
 class myDrawer extends StatefulWidget {
-  myDrawer({super.key});
+  const myDrawer({super.key});
 
   @override
   State<myDrawer> createState() => _myDrawerState();
@@ -170,33 +169,33 @@ class _myDrawerState extends State<myDrawer> {
       google_logedin = prefs.getBool('google_logedin') ?? false;
 
       phone_logedin = prefs.getBool('phone_logedin') ?? false;
-      String phone_number = prefs.getString('phone_number').toString();
-      print("*//**//*/**/*/**//**/**//*${phone_number}");
+      String phoneNumber = prefs.getString('phone_number').toString();
+      print("*//**//*/**/*/**//**/**//*$phoneNumber");
 
-      String google_name = prefs.getString('google_name') ?? "";
-      String google_number = prefs.getString('google_number') ?? "";
+      String googleName = prefs.getString('google_name') ?? "";
+      String googleNumber = prefs.getString('google_number') ?? "";
 
-      for (int i = 0; i < google_name.length; i++) {
-        if (google_name[i] == " ") {
-          first_name = google_name.substring(0, i);
-          last_name = google_name.substring(i, google_name.length);
-          i = google_name.length;
+      for (int i = 0; i < googleName.length; i++) {
+        if (googleName[i] == " ") {
+          first_name = googleName.substring(0, i);
+          last_name = googleName.substring(i, googleName.length);
+          i = googleName.length;
         }
       }
       // name = google_name;
       // print("*//**//*/**/*/**//**/**//*${google_logedin}");
 
       if (google_logedin == true) {
-        name = google_name;
-        phone = google_number;
+        name = googleName;
+        phone = googleNumber;
         setState(() {});
-        print("*//**//*/**/*/**//**/**//*${name}");
+        print("*//**//*/**/*/**//**/**//*$name");
         return phone;
       } else {
-        phone = phone_number;
+        phone = phoneNumber;
         first_name = null;
         last_name = null;
-        print("*//**//*/**/*/**//**/**//*${phone}");
+        print("*//**//*/**/*/**//**/**//*$phone");
         setState(() {});
         return name;
       }
@@ -219,7 +218,7 @@ class _myDrawerState extends State<myDrawer> {
               "Phone Number :${phone ?? " "}",
               style: GoogleFonts.lato(color: Colors.white, fontSize: 20),
             ),
-            SizedBox(
+            const SizedBox(
               height: 20,
             ),
             if (google_logedin == true)
@@ -227,7 +226,7 @@ class _myDrawerState extends State<myDrawer> {
                 "First Name :${first_name ?? " "}",
                 style: GoogleFonts.lato(color: Colors.white, fontSize: 20),
               ),
-            SizedBox(
+            const SizedBox(
               height: 20,
             ),
             if (google_logedin == true)
@@ -235,11 +234,11 @@ class _myDrawerState extends State<myDrawer> {
                 "Last Name :${last_name ?? " "}",
                 style: GoogleFonts.lato(color: Colors.white, fontSize: 20),
               ),
-            Spacer(),
+            const Spacer(),
             Center(
                 child: Padding(
               padding: const EdgeInsets.only(bottom: 30, right: 20),
-              child: Container(
+              child: SizedBox(
                 width: double.infinity,
                 child: FloatingActionButton.extended(
                   onPressed: () async {
@@ -253,7 +252,7 @@ class _myDrawerState extends State<myDrawer> {
                     prefs.setBool('google_logedin', false);
                     prefs.setBool('phone_logedin', false);
                   },
-                  label: Text('Signout'),
+                  label: const Text('Signout'),
                   backgroundColor: const Color(0xfff0a307),
                 ),
               ),
